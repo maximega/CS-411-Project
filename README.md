@@ -6,3 +6,5 @@ The purpose of this app is to try to solve the impossible problem of trying to f
 
 
 Events-APP
+
+The purpose of this app is to never miss out on an amazing events in your area. This app will also use a Facebook authentication service. The app will use your preferences and likes as a filter for events that might interest you. In addition to the Facebook API, it will also make use of the Eventful API which allow you to find events near you. This app will recommend events near you and also will have the option of filtering events ex: by price, location, category. It will utilize a database to store your own profile and the events you like are have went to, to help recomemnd events that you will like. The goal for this project is to never miss out an opportunity to have some fun. 
