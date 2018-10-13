@@ -1,9 +1,0 @@
-Finding gifts for people based on filtered categories and Facebook ID’s.
-Target User: Social media savvy users looking for a gift for an active Facebook member.
-	
-Our product is an application that assists users when looking for gifts for their facebook friends.
-
-This user in this case is looking for a gift for a specific person that has a facebook. When they open the app, there will be a three options to choose from.  One option will allow you to filter your search by category.The option this user will choose way saying something like “filter using Facebook”. This option will allow the user to type in the person’s name and all select the facebook of the person they are buying a gift for. Once the facebook is selected, the app will use Facebook’s Graph API to find user likes. The app will direct the user to a page that lists top results that are related to each of the person’s facebook likes. Once a user wants to purchase a gift, they will be redirected to the amazon website so that they can purchase said gift. The item will then be added to a database associated with that user’s id, as it will become part of the user’s purchase history. 
-
-	
-	Input: The name of the Facebook user you want to buy a gift for.
