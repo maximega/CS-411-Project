@@ -1,0 +1,27 @@
+
+  Finding gifts for people based on filtered categories and Facebook ID’s.
+
+  Target User: 
+   
+  Social media savvy users looking for a gift for an active Facebook member.
+	
+  Product Definition:
+  
+  Our product is an application that assists users when looking for gifts for their facebook friends.
+
+  Product Logic:
+  
+  As a user looking for a gift for a specific person that has a facebook. When they open the app, there will be three options   to choose from. One option will allow you to filter your search by category, as well as “filter using Facebook”. This option   will allow the user to type in the person’s name and select their facebook. Once the facebook is selected, the app will use   Facebook’s Graph API to find user likes. The app will direct the user to a page that lists top results that are related to     each of the person’s facebook likes. If a user has no likes that correlate to possible gifts then the user will be             automatically redirected to the popular gifts user story.  Once a user wants to purchase a gift, they will be redirected to   the amazon website so that they can purchase said gift. The item will then be added to a database associated with that         user’s id, as it will become part of the user’s purchase history. 
+
+  Input: 
+  
+  The name of the Facebook user you want to buy a gift for.
+
+  Output:
+  
+  A list of 10 or so amazon products referenced from facebook likes. The user will have the option to expand the list if they   want to see more items for that particular like, with a scroll feature. Each product will have a picture and a link to         amazon webpage. The user will also have the option to X out of a facebook likes to narrow the results. Once purchased, the     item will be added to a database associated with that user’s id, as it will become part of the user’s purchase history. 
+
+	
+  Mockup: 
+  
+  The user will be presented with a navigation bar with 3 options to possibly click. Each option will lead you to a different   user story. For this user story, a user will be led to a page where a blank text field will appear. A user should then enter   the name and the page will show with possible gift ideas for that person.
