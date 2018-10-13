@@ -79,6 +79,7 @@ High level user stories:
 
   Output: 
   
+ 
   A list of 30 or so amazon products that each have an image and a link associated with it that allows the user to order the     product from amazon's site. The user will also have the option to sort the output by a few different criteria like most       popular products today, over the past week, over the past month, over the past year, etc. 
 	
 	
