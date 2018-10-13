@@ -1,9 +1,14 @@
 Finding gifts for people based on search criteria
-	Target User: Any user looking for a gift with specific criteria in mind.
 
-	Our product in this scenario will help users when looking for gifts in specific categories.
+Target User: Any user looking for a gift with specific criteria in mind.
 
-The user here is looking for a gift in a specific category, or across a few specific categories. This will just be one of three options when using the app, and it will say something like “search by category”. This will let the user type in a few search criteria such as “Sports movies headphones”, and then the app will use the Amazon API to find good results. Once a user wants to purchase a gift, they will be redirected to the amazon website so that they can purchase said gift. The item will then be added to a database associated with that user’s id, as it will become part of the user’s purchase history. 
+Our product in this scenario will help users when looking for gifts in specific categories.
+
+The user here is looking for a gift in a specific category, or across a few specific categories. This will just be one of 
+three options when using the app, and it will say something like “search by category”. This will let the user type in a few 
+search criteria such as “Sports movies headphones”, and then the app will use the Amazon API to find good results. Once a user
+wants to purchase a gift, they will be redirected to the amazon website so that they can purchase said gift. The item will then
+be added to a database associated with that user’s id, as it will become part of the user’s purchase history. 
 
 Input: a list of words to search by all separated by spaces 
 
