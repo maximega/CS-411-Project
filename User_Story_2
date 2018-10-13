@@ -1,0 +1,26 @@
+Finding gifts for people based on search criteria.
+
+  Target User: 
+
+  Any user looking for a gift with specific criteria in mind.
+  
+  Product Definition:
+  
+	This portion will help users find specific gifts through a search query.
+  
+  Product Logic:
+  
+  As a user looking for a gift in a specific category, or across a few specific categories. This will be the second option       when using the gift seeking app, and it will state “search by category”. This will let the user type in a few search           criteria such as sports, movies, or headphones, and then the app will use the Amazon API to find good results. If the search   criteria is not valid i.e: shows nothing on Amazon then the user will be prompted to enter another search. Once a user wants   to purchase a gift, they will be redirected to the amazon website so that they can purchase said gift. The item will then be   added to a database associated with that user’s id, as it will become part of the user’s purchase history. 
+
+  Input: 
+  
+  A list of words to search [separated by spaces] 
+
+  Output: 
+  
+  A list of 30 or so amazon products per criteria matching the search criteria inputted. There will also be the same sorting     options as the ones provided by Amazon so the user can sort by relevance, price, new, etc. Each product will have a picture   and a link to amazon to allow the user to order from amazon’s site.
+
+  Mockup: 
+  
+  Corresponding to the first user story, there will be 3 categories and this user story corresponds to the user selecting the   search by category option. It will then show a drop down of popular categories that might work and an additional text field   to enter your own category. If a valid category is entered/chosen then it will reveal a page with gifts corresponding to       that option with an ability to extend the amount of gifts shown and with a scroll bar on the side. 
+
