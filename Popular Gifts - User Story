@@ -1,0 +1,15 @@
+
+Finding gifts for people based on other popular/highly rated gifts
+	Target User: Any user looking for a gift without pre-existing ideas.
+
+This use of our product will help find gift for people who do not know where to start looking for gifts. 
+
+The user in this case has no idea what they are looking for. So in this case, they can click a button that says “See what’s popular”. The app will give options to see what is popular recently, over the past month, year and so on. The app will use the Amazon API to load said gifts by the specified search criteria. Once a user wants to purchase a gift, they will be redirected to the amazon website so that they can purchase said gift. The item will then be added to a database associated with that user’s id, as it will become part of the user’s purchase history. 
+
+Input: a button that allows you to search by popularity 
+
+Output: a list of 30 or so amazon products that each have an image and a link associated with it that allows the user to order the product from amazon's site. The user will also have the option to sort the output by a few different criteria like most popular products today, over the past week, over the past month, over the past year, etc. 
+	
+	
+Mock up: 
+
