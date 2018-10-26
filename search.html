@@ -1,0 +1,10 @@
+<!doctype HTML>
+<body>
+    <h2>Search for Facebook user likes</h2>
+    <form method="GET" action="{{ url_for('result') }}">
+        <label for="search">Enter the people you would like to search:</label>
+        <input type="text" name="search"/>
+        <input type="hidden" name="hidden"/>
+        <input type="submit" value="Submit"/>
+    </form>
+</body>
