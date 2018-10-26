@@ -1,0 +1,30 @@
+<!doctype HTML>
+<body>
+    <a href="/">Home</a><br>
+    <h2>Results for search {{user_id}}</h2>
+    {% if id %}
+    {% for item in id%}
+        <p>id is: {{item}}</p>
+    {% endfor %}
+    {%endif%}
+    {% if name %}
+    {% for item in name %}
+        <p>name is: {{item}}</p>
+    {% endfor %}
+    {%endif%}
+    {% if last_name %}
+    {% for item in last_name %}
+        <p>last name is: {{item}}</p>
+    {% endfor %}
+    {%endif%}
+    {% if email %}
+    {% for item in email %}
+        <p>email is: {{item}}</p>
+    {% endfor %}
+    {%endif%}
+    {% if like %}
+    {% for item in like %}
+        <p>like is: {{item[0]}}</p>  
+    {% endfor %}
+    {%endif%}
+</body>
