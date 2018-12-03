@@ -3,10 +3,10 @@ import time
 
 # This code outputs  followers fromm the inputted user.   
 
-consumer_key = "aL3FbY1z6yMH0nrIEk4z8H2I3" 
-consumer_secret = "BcCBeyzHHteohqrQqCNWW06nQS8M2A5BH6ChPZS3yoex0BzWb2" 
-access_token = "956264951156498432-6JE2kpBQ3tNVXeYYeHl255Og8O7MNne"
-access_token_secret = "Vf6hul4q0lqlZ1WztKeRcGSSRWCxL2iXjBrBjv1INL3pE" 
+consumer_key = "" 
+consumer_secret = "" 
+access_token = ""
+access_token_secret = "" 
 
 accountvar = raw_input("Account:")
 
