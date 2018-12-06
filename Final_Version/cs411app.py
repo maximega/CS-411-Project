@@ -34,7 +34,7 @@ cursor = conn.cursor()
 # ----------------- SPOTIFY OAUTH & TOKEN INFO SET UP ----------------
 SPOTIFY_AUTH_URL = "https://accounts.spotify.com/authorize"
 SPOTIFY_TOKEN_URL = "https://accounts.spotify.com/api/token"
-app.secret_key = 'bff89419b87b4e088f5f0b458b1536ce'
+app.secret_key = "" #removed for security purposes
 
 REDIRECT_URI = "http://127.0.0.1:8081/callback/"
 
