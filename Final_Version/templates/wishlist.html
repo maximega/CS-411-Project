@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+        <!-- Google font -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700"/>
+
+        <!-- Bootstrap -->
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}"/>
+
+        <!-- Slick -->
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/slick.css') }}"/>
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/slick-theme.css') }}"/>
+
+        <!-- nouislider -->
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/nouislider.min.css') }}"/>
+
+        <!-- Font Awesome Icon -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/font-awesome.min.css') }}">
+
+        <!-- Custom stlylesheet -->
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"/>
+    <!--===============================================================================================-->
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/util.css')}}">
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename= 'css/main.css')}}">
+    <!--===============================================================================================-->
+</head>
+<style>
+    body{
+        background: #D3D3D3;
+        top: 300px;
+    }
+</style>
+<body>
+    <header>
+        <!-- HEADER -->
+        <div id="header">
+            <!-- row -->
+            <div class="row">
+                <!-- LOGO -->
+                <div class="col-md-1">
+                    <div class="header-logo">
+                        <a href="/home" class="logo">
+                            <img src="{{ url_for('static', filename='img/Gift.png') }}" alt="" style="width:180px;height:150px;" allign=middle>
+                        </a>
+                    </div>
+                </div>
+                <!-- /LOGO -->
+                <!-- SEARCH BAR -->
+                <div class="col-md-6">
+                    <div class="header-search">
+                        <form method="GET" action="{{ url_for('result') }}" id="form">
+                            <input class="input" type="text" placeholder="Search by item" name="search">
+                            <button class="search-btn">Search</button>
+                        </form>
+                    </div>
+                    <div class="header-search">
+                        <form method="GET" action="{{ url_for('spotify') }}">
+                            <input class="input" placeholder="Search by spotify name" name="search">
+                            <button class="search-btn">Search</button>
+                        </form>
+                    </div>
+                </div>
+                <!-- /SEARCH BAR -->
+                <!-- ACCOUNT -->
+                <div class="header-ctn">
+                    <!-- Wishlist -->
+                    <div>
+                        <a href="/wishlist">
+                            <i class="fa fa-list-ul"></i>
+                            <span>Your Wishlist</span>
+                        </a>
+                    </div>
+                    <!-- /Wishlist -->
+                </div>
+            </div>
+            <!-- row -->
+        </div>
+        <!-- /MAIN HEADER -->
+    </header>
+    <!-- /HEADER -->
+    <!-- BREADCRUMB -->
+    {%if error%}
+        <div id="breadcrumb" class="section">
+            <div class="col-md-12">
+                <ul class="breadcrumb-tree">
+                    {% if search_term %}
+                        <h3>Your search for {{search_term}} has raised an error, please search again</h3>
+                    {%endif%}
+                </ul>
+            </div>
+        </div>
+    {%endif%}
+	<div class="limiter">
+		<div class="container-table100">
+			<div class="wrap-table100">
+				<div class="table100 ver1 m-b-110">
+					<div class="table100-head">
+						<table>
+							<thead>
+								<tr class="row100 head">
+									<th class="cell100 column1">Title</th>
+									<th class="cell100 column2">Price</th>
+                                    <th class="cell100 column3">Currency</th>
+                                    <th class="cell100 column4">Recipient</th>
+                                    <th class="cell100 column5"></th>
+								</tr>
+							</thead>
+						</table>
+                    </div>
+                    {%if gifts%}
+                        <div class="table100-body">
+                            <table>
+                                <tbody>
+                                    {% for gift in gifts %}
+                                        <tr class="row100 body">
+                                            {% if gift[0] %}
+                                                {% if gift[3] %}
+                                                    <td class="cell100 column1"><a href={{gift[3]}}>{{gift[0]}}</a></td>
+                                                {% endif %}
+                                            {% endif %}
+                                            {% if gift[1] %}
+                                                <td class="cell100 column2">{{gift[1]}}</td>
+                                            {% endif %}
+                                            {% if gift[2] %}
+                                                <td class="cell100 column3">{{gift[2]}}</td>
+                                            {% endif %} 
+                                            {% if gift[4] %}
+                                                <td class="cell100 column4">{{gift[4]}}</td>
+                                            {% endif %} 
+                                            <td class="cell100 column4">
+                                                <form method="POST" action="{{ url_for('deleteitem') }}" id="form">
+                                                        <input type="hidden" name="item_id" value="{{gift[5]}}">
+                                                        <input type="hidden" name="user_id" value="{{gift[6]}}">
+                                                        <button class="btn btn-primary" name = "remove" >Remove</button>
+                                                    </form>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    {%endif%}
+				</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

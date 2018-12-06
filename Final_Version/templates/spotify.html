@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+        <!-- Google font -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700"/>
+
+        <!-- Bootstrap -->
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}"/>
+
+        <!-- Slick -->
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/slick.css') }}"/>
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/slick-theme.css') }}"/>
+
+        <!-- nouislider -->
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/nouislider.min.css') }}"/>
+
+        <!-- Font Awesome Icon -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/font-awesome.min.css') }}">
+
+        <!-- Custom stlylesheet -->
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"/>
+</head>
+<style>
+    body{
+        background: #D3D3D3;
+        top: 300px;
+    }
+</style>
+<body>
+    <header>
+    <!-- HEADER -->
+        <div id="header">
+            <!-- row -->
+            <div class="row">
+                <!-- LOGO -->
+                <div class="col-md-1">
+                    <div class="header-logo">
+                        <a href="/home" class="logo">
+                            <img src="{{ url_for('static', filename='img/Gift.png') }}" alt="" style="width:180px;height:150px;" allign=middle>
+                        </a>
+                    </div>
+                </div>
+                <!-- /LOGO -->
+                <!-- SEARCH BAR -->
+                <div class="col-md-6">
+                    <div class="header-search">
+                        <form method="GET" action="{{ url_for('result') }}" id="form">
+                            <input class="input" type="text" placeholder="Search by item" name="search">
+                            <button class="search-btn">Search</button>
+                        </form>
+                    </div>
+                    <div class="header-search">
+                        <form method="GET" action="{{ url_for('spotify') }}" id="form">
+                            <input class="input" placeholder="Search by spotify name" name="search">
+                            <button class="search-btn">Search</button>
+                        </form>
+                    </div>
+                </div>
+                <!-- /SEARCH BAR -->
+                <!-- ACCOUNT -->
+                <div class="header-ctn">
+                    <!-- Wishlist -->
+                    <div>
+                        <a href="/wishlist">
+                            <i class="fa fa-list-ul"></i>
+                            <span>Your Wishlist</span>
+                        </a>
+                    </div>
+                    <!-- /Wishlist -->
+                </div>
+            </div>
+            <!-- row -->
+        </div>
+        <!-- /MAIN HEADER -->
+    </header>
+    <!-- /HEADER -->
+    <!-- BREADCRUMB -->
+    {%if error%}
+        <div id="breadcrumb" class="section">
+            <div class="col-md-12">
+                <ul class="breadcrumb-tree">
+                    {% if search_term %}
+                        <h3>Your search for {{search_term}} has raised an error, please search again</h3>
+                    {%endif%}
+                </ul>
+            </div>
+        </div>
+    {%endif%}
+    <!-- /HEADER -->
+    <!-- SECTION -->
+    <div class="section">
+        <!-- container -->
+        <div class="container">
+            <!-- row -->
+            <div class="row">
+                <!-- STORE -->
+                <div id="store" class="col-md-8">
+                    <!-- store top filter -->
+                    
+                    <div class="store-filter clearfix">
+                        <div class="store-sort">
+                            <h4>Sort By:</h4>
+                            <label>
+                                <form method="GET" action="{{ url_for('spotify') }}">
+                                        <button class=btn name="search" value={{search_term}}>Best Match (default)</button>
+                                </form>
+                            </label>
+                            <label>
+                                <form method="GET" action="{{ url_for('spotify') }}#Ascending">
+                                    <button class=btn name="search" value={{search_term}}>Ascending</button>
+                                    <input type="hidden" name="Ascending" value="Ascending">
+                                </form>
+                            </label>
+                            <label>
+                                <form method="GET" action="{{ url_for('spotify') }}#Descending">
+                                    <button class=btn name="search" value={{search_term}}>Descending</button>
+                                    <input type="hidden" name="Descending" value="Descending">
+                                </form>
+                            </label>
+                        </div>
+                    </div>
+                    <!-- /store top filter -->
+                    <!-- store products -->
+                    <div class="row">
+                        {% for item in items %}
+                        <!-- product -->
+                        <div class="col-md-5 col-xs-9">
+                            <div class="product">
+                                <div class="product-body">
+                                    {% if item.title %}
+                                    <h3 class="product-name"><a href={{item.itemWebUrl}}>{{item.title}}</a></h3>
+                                    {% endif %}
+                                    {% if item.image%}
+                                        {% if item.image.imageUrl %}
+                                            <div class="product-img">
+                                                <img src={{item.image.imageUrl}} alt="">
+                                            </div>
+                                        {% endif %}
+                                    {% endif %}
+                                    {% if item.condition %}
+                                        <h4>Condition: {{item.condition}}</h4>
+                                    {% endif %}
+                                    {% if item.price %}
+                                        {% if item.price.value %}
+                                            {% if item.price.currency %}
+                                                    <h4 class="product-price">{{item.price.value}} {{item.price.currency}}</h4>
+                                            {% endif %}
+                                        {% endif %}
+                                    {% endif %}
+                                    <form method="POST" action="{{ url_for('result') }}" id="form">
+                                        <input class="input" name="recipient" placeholder="name" >
+                                        <input type="hidden" name="price" value="{{item.price.value}}">
+                                        <input type="hidden" name="currency" value="{{item.price.currency}}">
+                                        <input type="hidden" name="condition" value="{{item.condition}}">
+                                        <input type="hidden" name="title" value="{{item.title}}">
+                                        <input type="hidden" name="link" value="{{item.itemWebUrl}}">
+                                        <button class="btn btn-primary" name = "button_recipient" value = "{{item.title}}">Add to Wishlist</button>
+                                    </form>                                        
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        <!-- /product -->
+                    </div>
+                    <!-- /store products -->
+                </div>
+                <!-- /STORE -->
+            <!-- /row -->
+        </div>
+        <!-- /container -->
+    </div>
+    <!-- /SECTION -->
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+  <!-- Google font -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700"/>
+
+  <!-- Bootstrap -->
+  <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}"/>
+
+  <!-- Slick -->
+  <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/slick.css') }}"/>
+  <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/slick-theme.css') }}"/>
+
+  <!-- nouislider -->
+  <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/nouislider.min.css') }}"/>
+
+  <!-- Font Awesome Icon -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/font-awesome.min.css') }}">
+
+  <!-- Custom stlylesheet -->
+  <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"/>
+
+</head>
+<style>
+	body{
+		background: #D3D3D3;
+		top: 300px;
+	}
+</style>
+<body>
+    <div class="container">
+      <div class="mt-1">
+        <h1>Profile</h1>
+      </div>
+      <h2>You need to log in to see this page</h2>
+      <a type="button" class="btn btn-primary" href="/auth">Login</a>
+    </div>
+</body>
