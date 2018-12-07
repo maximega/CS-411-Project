@@ -25,3 +25,6 @@ After the results page is generated, you may add any gift you like to your wishl
 
 Lastly, our program utilizes a cache, by saving the most recent spotify track search you have made. If your search value is found in the cache, an API call is avoided, and an artist is chosen at random from the artist list provided in the cache. 
 
+
+--NOTE:
+  All content in static folder was not written by me and has been credited to the proper sources. All the folder contains is     css templates that provide the website style.
