@@ -34,7 +34,7 @@ cursor = conn.cursor()
 # ----------------- SPOTIFY OAUTH & TOKEN INFO SET UP ----------------
 SPOTIFY_AUTH_URL = "https://accounts.spotify.com/authorize"
 SPOTIFY_TOKEN_URL = "https://accounts.spotify.com/api/token"
-app.secret_key = "" #removed for security purposes
+app.secret_key = 'bff89419b87b4e088f5f0b458b1536ce'
 
 REDIRECT_URI = "http://127.0.0.1:8081/callback/"
 
@@ -114,6 +114,7 @@ def authorize(auth_token):
     response_data = json.loads(post_request.text)
     access_token = response_data["access_token"]
 
+
     # use the access token to access Spotify API
     auth_header = {"Authorization": "Bearer {}".format(access_token)}
     return auth_header
@@ -155,6 +156,7 @@ def result():
     if request.method == 'GET':
         error = None
         sort = None
+        rand = None
         responseList = request.args
         # ----------------------- SORT HANDLES SORTING ITEMS BY ASCENDING/DESCENDING PRICES -------------------------
         if len(responseList) > 1:
@@ -162,7 +164,7 @@ def result():
             sort = list(responseList.values())[1]
         elif len(responseList) == 1:
             item = list(responseList.values())[0]
-        return make_ebay_search(item, sort, 'result.html')
+        return make_ebay_search(item, sort, rand,'result.html')
     # ----------------------- POST WHEN ADDING A SPECIFIC ITEM TO YOUR WISHLIST -------------------------
     else:
         title = request.form.get('title')
@@ -196,10 +198,15 @@ def spotify():
 
     error = None
     sort = None
+    rand = None
     responseList = request.args
-    if len(responseList) > 1:
+    if len(responseList) > 2:
         track = list(responseList.values())[0]
         sort = list(responseList.values())[1]
+        rand = int(list(responseList.values())[2])
+    elif len(responseList) == 2:
+        track = list(responseList.values())[0]
+        rand = int(list(responseList.values())[1])
     elif len(responseList) == 1:
         track = list(responseList.values())[0]
     # ----------------------- IF SEARCHED FOR TRACK DOES NOT EXIST -------------------------
@@ -218,14 +225,19 @@ def spotify():
         return render_template('home.html', error=error, search_term=track)
 
     # -------- SELECT RANDOM ARTIST FROM LIST OF ARTISTS ASSOCIATED WITH ENTERED TRACK --------
-    ceiling = len(artists) -1
-    rand = random.randint(0, ceiling)
-    item = artists[rand]
+    # -------- IF YOU ARE JUST SORTING, THEN RESORT ON THE SAME ARTIST YOU JUST ENTERED, SO RANDOMIZATION IS SKIPPED --------
+    if(rand):
+        artists = session[track]
+        item = artists[rand]
+    else:
+        ceiling = len(artists) -1
+        rand = random.randint(0, ceiling)
+        item = artists[rand]
 
-    return make_ebay_search(item, sort,'spotify.html')
+    return make_ebay_search(item, sort, rand, 'spotify.html')
 
 # -------- HELPER FUNCTION FOR MAKING EBAY API CALL FOR SPECIFIED ITEM, AND SPECIFIED SORTING CRITERIA --------
-def make_ebay_search(item, sort, render_str):
+def make_ebay_search(item, sort, rand, render_str):
     url = "https://api.ebay.com/buy/browse/v1/item_summary/search?q=" + item
     if sort:
         if sort == "Ascending":
@@ -256,7 +268,7 @@ def make_ebay_search(item, sort, render_str):
                 limit = val
             if key == "itemSummaries":
                 item_summary = [item for item in val]
-        return render_template(render_str, total=total, limit=limit, items=item_summary, search_term=item)
+        return render_template(render_str, total=total, limit=limit, items=item_summary, search_term=item, random=rand)
 
     else:
         error = True
